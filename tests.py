@@ -98,7 +98,6 @@ class TestBooksCollector:
             'Гордость и предубеждение и зомби': 'Фантастика',
             'Что делать, если ваш кот хочет вас убить': 'Комедии'
         }
-
     # тест для книги без жанра
     def test_book_without_genre(self):
         collector = BooksCollector()
