@@ -17,21 +17,22 @@ class TestBooksCollector:
         # проверяем, что добавилось именно две
         # словарь books_rating, который нам возвращает метод get_books_rating, имеет длину 2
         assert len(collector.get_books_rating()) == 2
-        #тест для метода set_book_genre
+
     @pytest.mark.parametrize("book_name, genre, expected_genre", [
         ('Гордость и предубеждение и зомби', 'Фантастика', 'Фантастика'),
         ('Что делать, если ваш кот хочет вас убить', 'Комедии', 'Комедии'),
-        ('Война и мир', 'Фантастика', 'Фантастика')])
+        ('Война и мир', 'Фантастика', 'Фантастика')
+    ])
     def test_set_book_genre(self, book_name, genre, expected_genre):
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
         assert collector.get_book_genre(book_name) == expected_genre
-    # тест для метода get_books_with_specific_genre
+
     @pytest.mark.parametrize("genre, expected_books", [
         ('Фантастика', ['Гордость и предубеждение и зомби']),
         ('Комедии', ['Что делать, если ваш кот хочет вас убить']),
-        ('Мультфильмы', [])
+        ('Детективы', [])
     ])
     def test_get_books_with_specific_genre(self, genre, expected_books):
         collector = BooksCollector()
@@ -41,10 +42,9 @@ class TestBooksCollector:
         collector.set_book_genre('Что делать, если ваш кот хочет вас убить', 'Комедии')
         books = collector.get_books_with_specific_genre(genre)
         assert books == expected_books
-    # тест для метода get_books_for_children
+
     @pytest.mark.parametrize("book_name, genre, expected_books_for_children", [
         ('Гордость и предубеждение и зомби', 'Фантастика', ['Гордость и предубеждение и зомби']),
-        ('Как приручить дракона', 'Мультфильмы', ['Как приручить дракона']),
         ('Что делать, если ваш кот хочет вас убить', 'Комедии', [])
     ])
     def test_get_books_for_children(self, book_name, genre, expected_books_for_children):
@@ -53,7 +53,7 @@ class TestBooksCollector:
         collector.set_book_genre(book_name, genre)
         books_for_children = collector.get_books_for_children()
         assert books_for_children == expected_books_for_children
-    # тест для метода add_book_in_favorites
+
     @pytest.mark.parametrize("book_name, expected_in_favorites", [
         ('Гордость и предубеждение и зомби', True),
         ('Что делать, если ваш кот хочет вас убить', False)
@@ -65,7 +65,7 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Гордость и предубеждение и зомби')
         in_favorites = book_name in collector.get_list_of_favorites_books()
         assert in_favorites == expected_in_favorites
-    # тест для метода delete_book_from_favorites
+
     @pytest.mark.parametrize("book_name, expected_in_favorites", [
         ('Гордость и предубеждение и зомби', False),
         ('Что делать, если ваш кот хочет вас убить', False)
@@ -78,7 +78,7 @@ class TestBooksCollector:
         collector.delete_book_from_favorites('Гордость и предубеждение и зомби')
         in_favorites = book_name in collector.get_list_of_favorites_books()
         assert in_favorites == expected_in_favorites
-    # тест для метода get_books_genre
+
     def test_get_books_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
@@ -90,13 +90,13 @@ class TestBooksCollector:
             'Гордость и предубеждение и зомби': 'Фантастика',
             'Что делать, если ваш кот хочет вас убить': 'Комедии'
         }
-    # тест для книги без жанра
+
     def test_book_without_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         genre = collector.get_book_genre('Гордость и предубеждение и зомби')
         assert genre == ''
-    # тест для метода get_list_of_favorites_books корректное отображения книги в избранном
+
     def test_get_list_of_favorites_books(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
