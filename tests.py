@@ -94,7 +94,7 @@ class TestBooksCollector:
             'Что делать, если ваш кот хочет вас убить': 'Комедии'
         }
 
-    def test_book_without_genre(self):
+    def test_get_book_genre_without_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         genre = collector.get_book_genre('Гордость и предубеждение и зомби')
