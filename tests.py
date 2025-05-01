@@ -49,7 +49,7 @@ class TestBooksCollector:
 
     @pytest.mark.parametrize("book_name, genre, expected_books_for_children", [
         ('Гордость и предубеждение и зомби', 'Фантастика', ['Гордость и предубеждение и зомби']),
-        ('Что делать, если ваш кот хочет вас убить', 'Комедии', [])
+        ('Что делать, если ваш кот хочет вас убить', 'Комедии', ['Что делать, если ваш кот хочет вас убить'])
     ])
     def test_get_books_for_children(self, book_name, genre, expected_books_for_children):
         collector = BooksCollector()
