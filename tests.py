@@ -85,7 +85,6 @@ class TestBooksCollector:
     def test_get_books_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
-        collector.set_book_genre('Гордость и предубеждение и зомби', 'Фантастика')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
         collector.set_book_genre('Что делать, если ваш кот хочет вас убить', 'Комедии')
         books_genre = collector.get_books_genre()
